@@ -68,9 +68,11 @@ const Navbar = ({history}) => {
                 {/* eslint-disable-next-line */}
                 <li onClick={() => setActive(0)} className={ulActive === 0 && 'ul-active'}><Link to='/'>Home</Link></li>
                 {/* eslint-disable-next-line */}
-                <li onClick={() => setActive(1)} className={ulActive === 1 && 'ul-active'}><Link to='/tutorials'>Tutorials</Link></li>
+                <li onClick={() => setActive(1)} className={ulActive === 1 && 'ul-active'}><Link to='/articles'>Articles</Link></li>
                 {/* eslint-disable-next-line */}
-                <li onClick={() => setActive(2)} className={ulActive === 2 && 'ul-active'}><Link to='/blog'>Blog</Link></li>
+                <li onClick={() => setActive(2)} className={ulActive === 2 && 'ul-active'}><Link to='/tools'>Tools</Link></li>
+                 {/* eslint-disable-next-line */}
+                 {localStorage.getItem('authKey') && <li className={'ul-active'}><Link to='/dashboard'>Dashboard</Link></li>}
             </ul>
             {!navIsToggled && <h2 className='hamburger' onClick={() => setNavState(true)}>
                 <div className='bar-1'></div>

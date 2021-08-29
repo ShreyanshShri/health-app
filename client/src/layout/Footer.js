@@ -21,8 +21,8 @@ const Footer = () => {
                     <p>Contact Developers:</p>
                     <h4 style={{opacity:"0.8", letterSpacing:'2px'}}>Shreyansh</h4>
                     <a href='https://github.com/shreyanshshri' target='blank'>github/shreyanshshri</a>
-                    <h4 style={{opacity:"0.8", letterSpacing:'2px'}}>Aditya</h4>
-                    <a href='https://github.com/aditya2111' target='blank'>github/aditya2111</a>
+                    <h4 style={{opacity:"0.8", letterSpacing:'2px'}}>Our Instagram</h4>
+                    <a href='https://instagram.com/codefever.exe' target='blank'>instagram/codefever.exe</a>
                 </div>
         </footer>
     )

@@ -25,7 +25,7 @@ const Login = () => {
     const submitForm = async () => {
         try {
             setLoading(true)
-            const res = await axios.post('/login', formData)
+            const res = await axios.post('/user/login', formData)
             setLoading(false)
             setFormData({
                 email: '',

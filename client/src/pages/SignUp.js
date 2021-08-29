@@ -24,14 +24,14 @@ const SignUp = () => {
     const submitForm = async () => {
         try {
             setLoading(true)
-            await axios.post('/register', formData)
+            const res = await axios.post('/user/register', formData)
             setLoading(false)
             setFormData({
                 name: '',
                 email: '',
                 msg: ''
             })
-            alert("FeedBack sent. We'll catch yoou soon")
+            localStorage.setItem('authKey', res.data.authKey)
         } catch (err) {
             setLoading(false)
             console.log(err.response)
@@ -43,15 +43,13 @@ const SignUp = () => {
     return (
         <div>
             <form onSubmit={handleSubmit} className='container'>
-                    <h2 className='h2-red'>Send Feedback</h2>
+                    <h2 className='h2-red'>Create an account</h2>
 
                     <label>Name</label>
                     <input name='username' type="text" value={formData.name} placeholder="Name" onChange={handleChange} required={true} disabled={loading} />
 
                     <label>Email address</label>
                     <input name='email' type="email" value={formData.email} placeholder="Email" onChange={handleChange} disabled={loading} />
-
-                    <h2 className='h2-red'>Send Feedback</h2>
 
                     <label>Password</label>
                     <input name='password' type="password" value={formData.password} placeholder="Password" onChange={handleChange} required={true} disabled={loading} />

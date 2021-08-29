@@ -25,14 +25,14 @@ const ContactForm = () => {
         const submitForm = async () => {
             try {
                 setLoading(true)
-                const res = await axios.post('/feedback/', formData)
+                await axios.put('/contact', formData)
                 setLoading(false)
                 setFormData({
                     name: '',
                     email: '',
                     msg: ''
                 })
-                localStorage.setItem('authKey', res.data.authKey)
+                alert("Your response has been submitted")
             } catch (err) {
                 setLoading(false)
                 console.log(err.response)

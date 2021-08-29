@@ -20,6 +20,9 @@ import Navbar from './layout/Navbar'
 import Footer from './layout/Footer'
 import NotFound from './layout/NotFound'
 import ContactForm from './layout/ContactForm'
+import AdminPage from "./pages/AdminPage"
+import AddArticle from './components/admin/AddArticle'
+import EditArticle from './components/admin/EditArticle'
 
 function App() {
   return (
@@ -34,9 +37,12 @@ function App() {
         <Route exact path='/tools' component={Tools} />
         <Route exact path='/trainer' component={YogaTrainer} />
         <Route exact path='/articles' component={ArticleList} />
-        <Route exact path='/articles/:id' component={ArticlePage} />
+        <Route exact path='/articles/:slug/:id' component={ArticlePage} />
         <Route exact path='/consultant-list' component={ConsultantList} />
         <Route exact path='/chat' component={Chat} />
+        <Route exact path='/admin' component={AdminPage} />
+        <Route exact path='/admin/article/new' component={AddArticle} />
+        <Route exact path='/admin/article/edit/:id' component={EditArticle} />
         <Route component={NotFound} />
       </Switch>
       <ContactForm />
