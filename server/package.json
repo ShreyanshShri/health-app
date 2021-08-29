@@ -1,0 +1,24 @@
+{
+  "name": "healthie",
+  "version": "1.0.0",
+  "description": "A health monitor App",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Shreyansh",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dompurify": "^2.3.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsdom": "^17.0.0",
+    "marked": "^3.0.2",
+    "moment": "^2.29.1",
+    "mongoose": "^6.0.0",
+    "slugify": "^1.6.0",
+    "socket.io": "^4.1.3"
+  }
+}

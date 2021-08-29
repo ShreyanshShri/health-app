@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    hello world
+    <script src='/socket.io/socket.io.js'></script>
+    <script>
+        const socket = io({
+            transports: ['websocket'], 
+            upgrade: false
+        })
+        
+
+    </script>
+</body>
+</html>
+
+
+<!-- const consultantAuthKey = "6cafda549238c2f066f9b61acb589bb5f6321a35e8d4cd1afa9287e30438f2eb0c132ea570208c87be32c91ef025cda34b67f8577228785a62a8279e9136ffaf";
+const sender_authKey = "0aee20fb798ef00e92d19e64dde3b989428000b55e96c308e4a20d53ba01f2caa5e5db1eb2a9a788084f4082b258e6eafe874768efe76ae843dad2b5c3d1635a";
+const consultantEmail = 'example@gmail.com'
+
+socket.emit('join-user', {sender_authKey, reciever_email: consultantEmail})
+socket.on('message', (msg) => console.log(msg))
+socket.on('user-joined', () => {
+    console.log('sent')
+    socket.emit('send-message', {text:"hello", sender:"shreyam"})
+}) -->

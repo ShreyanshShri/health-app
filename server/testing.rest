@@ -1,0 +1,111 @@
+# admin login
+POST http://localhost:5000/auth
+Content-Type: application/json
+
+{
+    "password": "sample"
+}
+
+###
+# Get all articles
+GET http://localhost:5000/articles?page=1
+
+###
+# Get one article
+GET http://localhost:5000/articles/61272344f46077dc239bf8dd
+
+
+###
+# Post an article
+POST http://localhost:5000/articles
+Content-Type: application/json
+
+{
+    "password":"43bcb4f9f285099d326c2a613f10e91a95927b90f15e3fa9a575cd2bac6e6e299e38d02a362e5008d3ead211693f0c54537ae1b0227a1677c9838f57522107aa",
+    "article": {
+        "title": "Sample Title 3",
+        "description": "Sample Desc 3",
+        "wallpaper": "nil",
+        "markdown": "# This is title3 ## This is subtitle"
+    }
+}
+
+###
+# Edit an article
+PUT http://localhost:5000/articles/6127229df46077dc239bf8d8
+Content-Type: application/json
+
+{
+    "password":"71057ba536e65b6d115059db1d0eef34bce0f21264329437ed034e4984e6be7da42891d773c7f8347e6a47dce8d9faf2204da82d687f3f43675341273155cbbf",
+    "article": {
+        "title": "Edited Title",
+        "description": "Edited Desc 2",
+        "wallpaper": "nil",
+        "markdown": "# This is edited title ## This is edited subtitle"
+    }
+}
+
+### Delete an Article
+DELETE http://localhost:5000/articles/6127229df46077dc239bf8d8
+Content-Type: application/json
+
+{
+    "password":"71057ba536e65b6d115059db1d0eef34bce0f21264329437ed034e4984e6be7da42891d773c7f8347e6a47dce8d9faf2204da82d687f3f43675341273155cbbf"
+}
+
+###
+# Post a comment
+POST http://localhost:5000/articles/comment/61291fc04729aecd418289bb
+Content-Type: application/json
+
+{
+    "comment": "Sample Comment",
+    "password": "ab3c1419e3d9a584064c7ebe1d3efd356905a3c79261cd7737d2830a51528d240635c4756b4658806241e431fa17a4d492ba2f2cdaa99d05a2d1a63364604646"
+}
+
+
+
+# User routes
+
+###
+# Register
+POST http://localhost:5000/user/register
+Content-Type: application/json
+
+{
+    "username": "Test User",
+    "email": "example@gmail.com",
+    "password": "test-password"
+}
+
+###
+# Login
+POST http://localhost:5000/user/login
+Content-Type: application/json
+
+{
+    "email": "example@gmail.com",
+    "password": "test-password"
+}
+
+
+# Consultant
+###
+POST http://localhost:5000/consultant/register
+Content-Type: application/json
+
+{
+    "username": "Test Consultant",
+    "email": "example@gmail.com",
+    "password": "test-password"
+}
+
+###
+# Login
+POST http://localhost:5000/consultant/login
+Content-Type: application/json
+
+{
+    "email": "example@gmail.com",
+    "password": "test-password"
+}
