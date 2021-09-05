@@ -30,20 +30,13 @@ const articleSchema =new mongoose.Schema({
         type : Date,
         default : Date.now
     }, 
-    comments: [{
-        comment: {
-            type: String,
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Comment",
             required: true
-        },
-        username: {
-            type: String,
-            required: true
-        },
-        postedAt: {
-            type: Date,
-            default: Date.now
         }
-    }]
+    ]
 })
 
 articleSchema.pre('validate', function (next) {

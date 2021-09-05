@@ -5,6 +5,8 @@ const authAdmin = require('../utils/authAdmin.js')
 const authUser = require('../utils/authUser')
 const paginatedResults = require('../utils/paginatedResults')
 const Article = require('../models/Article')
+const Comment = require('../models/Comment')
+const User = require('../models/User')
 
 router.get('/', paginatedResults(Article), (req, res) => {
     res.status(200).json(res.paginatedResults)
@@ -70,13 +72,19 @@ router.post('/comment/:id', authUser, async (req, res) => {
 
         const article = await Article.findById(req.params.id)
         if (!article) return res.status(400).json({message: "Article doesn't exist!"})
-
-        const comments = article.comments
-        article.comments = [...comments, {
+        const user = await User.findOne({authKey: req.body.password})
+        const comment = new Comment({
             comment: req.body.comment,
-            username: req.username
-        }]
-
+            username: user.username,
+            profile: user.profile_pic,
+            email: user.email,
+            article: article._id
+        })
+        console.log(comment)
+        console.log(article)
+        console.log(req.body.comment)
+        await comment.save()
+        article.comments.push(comment._id)
         await article.save()
         res.status(200).json({
             message: "Comment Posted",

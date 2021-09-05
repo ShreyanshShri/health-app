@@ -21,12 +21,12 @@ POST http://localhost:5000/articles
 Content-Type: application/json
 
 {
-    "password":"43bcb4f9f285099d326c2a613f10e91a95927b90f15e3fa9a575cd2bac6e6e299e38d02a362e5008d3ead211693f0c54537ae1b0227a1677c9838f57522107aa",
+    "password":"84a4eeee15b296c32af4dee0bb2046fcba4da394d8e172df6441888b3353dd947f70cd34c54c412658884d9e63670783bd45b57cccd8df03feb3356fd26f0a3b",
     "article": {
-        "title": "Sample Title 3",
+        "title": "Sample Title 69",
         "description": "Sample Desc 3",
         "wallpaper": "nil",
-        "markdown": "# This is title3 ## This is subtitle"
+        "markdown": "# This is title3 ## This is subtitle 2134"
     }
 }
 
@@ -55,12 +55,12 @@ Content-Type: application/json
 
 ###
 # Post a comment
-POST http://localhost:5000/articles/comment/61291fc04729aecd418289bb
+POST http://localhost:5000/articles/comment/613251a1915fb738a5ba16f3
 Content-Type: application/json
 
 {
     "comment": "Sample Comment",
-    "password": "ab3c1419e3d9a584064c7ebe1d3efd356905a3c79261cd7737d2830a51528d240635c4756b4658806241e431fa17a4d492ba2f2cdaa99d05a2d1a63364604646"
+    "password": "32077724d55fc17e305daf3d4e0eb947ddf2a2c12ed65f546c393d92d736a8cc4d7904e601c60bfecf7dfa1eb7057cc6ef145b7d94418eea8db7bf67fafa89ff"
 }
 
 
@@ -88,6 +88,15 @@ Content-Type: application/json
     "password": "test-password"
 }
 
+###
+# Update about
+POST http://localhost:5000/user/update-desc
+Content-Type: application/json
+
+{
+    "password": "32077724d55fc17e305daf3d4e0eb947ddf2a2c12ed65f546c393d92d736a8cc4d7904e601c60bfecf7dfa1eb7057cc6ef145b7d94418eea8db7bf67fafa89ff",
+    "desc": "Updated profile desc"
+}
 
 # Consultant
 ###

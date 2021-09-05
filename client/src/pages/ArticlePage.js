@@ -4,6 +4,7 @@ import MetaTags from '../components/MetaTags'
 import swal from 'sweetalert'
 
 // import Loader from '../common/Loader'
+import Comments from '../components/articles/Comments'
 
 const ArticlePage = ({ match }) => {
     const [article, setArticle] = useState({})
@@ -50,6 +51,7 @@ const ArticlePage = ({ match }) => {
                     <span className='container'>{new Date(article.createdAt).toLocaleDateString()}</span>
                 </div>
                 <p className='para container'  dangerouslySetInnerHTML={{ __html: article.content }}></p>
+                <Comments comments={article.comments} />
             </div>
             </Fragment>}
         </article>

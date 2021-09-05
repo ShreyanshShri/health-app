@@ -8,6 +8,11 @@
 </head>
 <body>
     hello world
+    <form action="/user/change-pfp" method="POST" enctype="multipart/form-data">
+        <input type='text' name='password' value="" />
+        <input type="file" name='avatar' />
+        <button type='submit'>Submit</button>
+    </form>
     <script src='/socket.io/socket.io.js'></script>
     <script>
         const socket = io({
@@ -15,7 +20,7 @@
             upgrade: false
         })
         
-
+        document.querySelector('input').value = '32077724d55fc17e305daf3d4e0eb947ddf2a2c12ed65f546c393d92d736a8cc4d7904e601c60bfecf7dfa1eb7057cc6ef145b7d94418eea8db7bf67fafa89ff'
     </script>
 </body>
 </html>

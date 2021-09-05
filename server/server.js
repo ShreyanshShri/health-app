@@ -23,9 +23,10 @@ app.use(express.urlencoded({ extended:false }))
 app.use(express.json())
 
 app.get("/", (req, res) => {
-    res.send("Working bae")
+    res.sendFile(__dirname + '/routes/views/index.html')
 })
 
+app.use('/uploads', express.static('uploads'))
 app.use('/auth', authRoute)
 app.use('/articles', articleRoute)
 app.use('/user', userRoute)
