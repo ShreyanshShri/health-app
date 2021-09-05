@@ -19,6 +19,7 @@ const userSchema =new mongoose.Schema({
     },
     profile_pic: {
         type: String,
+        default: 'test-avatar',
     },
     about: {
         type: String,

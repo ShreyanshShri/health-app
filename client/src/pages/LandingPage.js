@@ -1,9 +1,11 @@
 import React from 'react'
 
+import Jokes from '../components/homepage/Jokes'
+
 const LandingPage = () => {
     return (
         <div>
-            Landing Page
+            <Jokes />
         </div>
     )
 }

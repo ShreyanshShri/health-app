@@ -15,6 +15,8 @@ const authAdmin = async (req, res, next) => {
         }
 
         req.username = user.username
+        req.email = user.email
+        req.user = user
         next()
 
     } catch (err) {

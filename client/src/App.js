@@ -15,6 +15,10 @@ import ArticleList from './pages/ArticleList'
 import ArticlePage from './pages/ArticlePage'
 import ConsultantList from './pages/ConsultantList'
 import Chat from './pages/Chat'
+import Pedometer from "./pages/Pedometer"
+import SoundTherapy from "./pages/SoundTherapy"
+import QnA from "./pages/QnA"
+import Thread from "./pages/Thread"
 
 import Navbar from './layout/Navbar'
 import Footer from './layout/Footer'
@@ -37,7 +41,11 @@ function App() {
         <Route exact path='/tools' component={Tools} />
         <Route exact path='/trainer' component={YogaTrainer} />
         <Route exact path='/articles' component={ArticleList} />
+        <Route exact path='/footsteps' component={Pedometer} />
+        <Route exact path='/sound-therapy' component={SoundTherapy} />
         <Route exact path='/articles/:slug/:id' component={ArticlePage} />
+        <Route exact path='/qna' component={QnA} />
+        <Route exact path='/qna/:id' component={Thread} />
         <Route exact path='/consultant-list' component={ConsultantList} />
         <Route exact path='/chat' component={Chat} />
         <Route exact path='/admin' component={AdminPage} />

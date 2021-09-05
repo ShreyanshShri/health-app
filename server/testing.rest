@@ -21,7 +21,7 @@ POST http://localhost:5000/articles
 Content-Type: application/json
 
 {
-    "password":"84a4eeee15b296c32af4dee0bb2046fcba4da394d8e172df6441888b3353dd947f70cd34c54c412658884d9e63670783bd45b57cccd8df03feb3356fd26f0a3b",
+    "password":"12e17da260be5172c0cdb13175887f4e537a04e10a9959bedcf22f0f85a9a6792a6037edf85ff2e9ba778b9c96e81f24bf8eb5e4f1d24481499a224ce0c55ba1",
     "article": {
         "title": "Sample Title 69",
         "description": "Sample Desc 3",
@@ -55,12 +55,29 @@ Content-Type: application/json
 
 ###
 # Post a comment
-POST http://localhost:5000/articles/comment/613251a1915fb738a5ba16f3
+POST http://localhost:5000/articles/comment/6134852d2213ae420d9772b4
 Content-Type: application/json
 
 {
     "comment": "Sample Comment",
-    "password": "32077724d55fc17e305daf3d4e0eb947ddf2a2c12ed65f546c393d92d736a8cc4d7904e601c60bfecf7dfa1eb7057cc6ef145b7d94418eea8db7bf67fafa89ff"
+    "password": "54323317fcc3c30988ada0c4689a90712a7f0b80c2ed267c2b0b49d62a94e4705d05aceb3e61fca0579fbd34bc46cec45c523ac9f7cad693c88ed4fbc0a24625"
+}
+
+###
+POST http://localhost:5000/articles/comments/get
+Content-Type: application/json
+
+{
+    "password" : "54323317fcc3c30988ada0c4689a90712a7f0b80c2ed267c2b0b49d62a94e4705d05aceb3e61fca0579fbd34bc46cec45c523ac9f7cad693c88ed4fbc0a24625"
+}
+
+###
+PUT http://localhost:5000/articles/comments/6134865165c0ac024157e031
+Content-Type: application/json
+
+{
+    "comment": "Updated COmmnet",
+    "password": "54323317fcc3c30988ada0c4689a90712a7f0b80c2ed267c2b0b49d62a94e4705d05aceb3e61fca0579fbd34bc46cec45c523ac9f7cad693c88ed4fbc0a24625"
 }
 
 
@@ -73,8 +90,8 @@ POST http://localhost:5000/user/register
 Content-Type: application/json
 
 {
-    "username": "Test User",
-    "email": "example@gmail.com",
+    "username": "Test User for chats",
+    "email": "example3@gmail.com",
     "password": "test-password"
 }
 
@@ -84,7 +101,7 @@ POST http://localhost:5000/user/login
 Content-Type: application/json
 
 {
-    "email": "example@gmail.com",
+    "email": "example2@gmail.com",
     "password": "test-password"
 }
 
@@ -104,8 +121,8 @@ POST http://localhost:5000/consultant/register
 Content-Type: application/json
 
 {
-    "username": "Test Consultant",
-    "email": "example@gmail.com",
+    "username": "Test Consultant 2",
+    "email": "example1234@gmail.com",
     "password": "test-password"
 }
 
@@ -117,4 +134,74 @@ Content-Type: application/json
 {
     "email": "example@gmail.com",
     "password": "test-password"
+}
+
+
+###
+# QnA
+
+POST http://localhost:5000/q/qna
+Content-Type: application/json
+
+{
+    "password": "54323317fcc3c30988ada0c4689a90712a7f0b80c2ed267c2b0b49d62a94e4705d05aceb3e61fca0579fbd34bc46cec45c523ac9f7cad693c88ed4fbc0a24625",
+    "content": "It works asdfbae"
+}
+
+###
+PUT http://localhost:5000/qna/q/6134900d1bddcee9028b5fa9
+Content-Type: application/json
+
+{
+    "password": "54323317fcc3c30988ada0c4689a90712a7f0b80c2ed267c2b0b49d62a94e4705d05aceb3e61fca0579fbd34bc46cec45c523ac9f7cad693c88ed4fbc0a24625",
+    "content": "Updated bae"
+}
+
+###
+DELETE http://localhost:5000/qna/q/6134900d1bddcee9028b5fa9
+Content-Type: application/json
+
+{
+    "password": "54323317fcc3c30988ada0c4689a90712a7f0b80c2ed267c2b0b49d62a94e4705d05aceb3e61fca0579fbd34bc46cec45c523ac9f7cad693c88ed4fbc0a24625"
+}
+
+###
+GET http://localhost:5000/qna/
+
+###
+GET http://localhost:5000/qna/61348f2425057db46be910ef
+
+
+###
+POST http://localhost:5000/qna/a/all
+Content-Type: application/json
+
+{
+    "password": "54323317fcc3c30988ada0c4689a90712a7f0b80c2ed267c2b0b49d62a94e4705d05aceb3e61fca0579fbd34bc46cec45c523ac9f7cad693c88ed4fbc0a24625"
+}
+
+###
+POST http://localhost:5000/qna/a/61348f2425057db46be910ef
+Content-Type: application/json
+
+{
+    "password": "54323317fcc3c30988ada0c4689a90712a7f0b80c2ed267c2b0b49d62a94e4705d05aceb3e61fca0579fbd34bc46cec45c523ac9f7cad693c88ed4fbc0a24625",
+    "answer": "This is a answer"
+}
+
+###
+PUT http://localhost:5000/qna/a/61349858f39dff19a2c81caa
+Content-Type: application/json
+
+{
+    "password": "54323317fcc3c30988ada0c4689a90712a7f0b80c2ed267c2b0b49d62a94e4705d05aceb3e61fca0579fbd34bc46cec45c523ac9f7cad693c88ed4fbc0a24625",
+    "answer": "This is a updated answer"
+}
+
+###
+DELETE http://localhost:5000/qna/a/61349a4ddd0f02c23e3e2111
+Content-Type: application/json
+
+{
+    "password": "54323317fcc3c30988ada0c4689a90712a7f0b80c2ed267c2b0b49d62a94e4705d05aceb3e61fca0579fbd34bc46cec45c523ac9f7cad693c88ed4fbc0a24625"
 }

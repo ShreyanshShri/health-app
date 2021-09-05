@@ -3,18 +3,36 @@ const router= express.Router()
 
 const authAdmin = require('../utils/authAdmin.js')
 const authUser = require('../utils/authUser')
-const paginatedResults = require('../utils/paginatedResults')
 const Article = require('../models/Article')
 const Comment = require('../models/Comment')
 const User = require('../models/User')
 
-router.get('/', paginatedResults(Article), (req, res) => {
-    res.status(200).json(res.paginatedResults)
+router.get('/', async (req, res) => {
+    try {
+        const articles = await Article.find().select(['_id', 'title', 'description', 'wallpaper', 'slug', 'createdAt']).sort({ createdAt : "desc" }).exec()
+        res.status(200).json({articles})
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({"message": "A server side error occured"})
+    }
+})
+
+router.post('/comments/get', async(req, res) => {
+    try {
+        const user = await User.findOne({authKey: req.body.password})
+        const comments = await Comment.find({email: user.email})
+        res.status(200).json({
+            comments
+        })
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({"message": "A server side error occured"})
+    }
 })
 
 router.get('/:id', async (req, res) => {
     try {
-        const article = await Article.findById(req.params.id)
+        const article = await Article.findById(req.params.id).populate('comments')
         res.status(200).json(article)
     } catch (err) {
         console.log(err)
@@ -73,6 +91,7 @@ router.post('/comment/:id', authUser, async (req, res) => {
         const article = await Article.findById(req.params.id)
         if (!article) return res.status(400).json({message: "Article doesn't exist!"})
         const user = await User.findOne({authKey: req.body.password})
+        console.log(user)
         const comment = new Comment({
             comment: req.body.comment,
             username: user.username,
@@ -80,9 +99,6 @@ router.post('/comment/:id', authUser, async (req, res) => {
             email: user.email,
             article: article._id
         })
-        console.log(comment)
-        console.log(article)
-        console.log(req.body.comment)
         await comment.save()
         article.comments.push(comment._id)
         await article.save()
@@ -90,6 +106,18 @@ router.post('/comment/:id', authUser, async (req, res) => {
             message: "Comment Posted",
             article: article
         })
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({messsage: "A server side error occured!"})
+    }
+})
+
+router.put('/comments/:id', authUser, async (req, res) => {
+    try {
+        let comment = await Comment.findById(req.params.id)
+        comment.comment = req.body.comment
+        await comment.save()
+        res.status(200).json({message: "Comment Updated", comment: comment})
     } catch (err) {
         console.log(err)
         res.status(500).json({messsage: "A server side error occured!"})
