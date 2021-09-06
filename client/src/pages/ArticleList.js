@@ -15,17 +15,18 @@ const ArticleList = () => {
     const fetchData = async () => {
         try {
             const res = await axios.get(`/articles?page=${1}`)
-            const data = res.data.article
+            const data = res.data.articles
+            console.log(res)
             setArticles(data)
             setLoading(false)
         } catch (err) {
             setLoading(false)
             swal({
                 title: "Error !",
-                text: `${err.response.data.message}`,
+                text: `${err.response ? err.response.data.message : "An error occured!"}`,
                 icon: "error",
                 button: "Try Again",
-              })        
+              })   
         }
     }
 

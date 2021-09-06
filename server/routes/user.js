@@ -33,11 +33,14 @@ router.post('/register', async(req, res) => {
         let user = new User(req.body)
         user.authKey = generateRandomString()
         user.password = await bcrypt.hash(password, 10)
-
+        user.profile_pic = 'test-avatar'
+        user.about = 'hi im using health++'
+        
         await user.save()
         res.status(200).json({
             message: "Account Created",
-            authKey: user.authKey
+            authKey: user.authKey,
+            id: user._id
         })
 
     } catch (err) {
@@ -64,7 +67,7 @@ router.post('/login', async(req, res) => {
         user.authKey = generateRandomString()
         await user.save()
 
-        res.status(200).json({message: "Logged In", authKey: user.authKey})
+        res.status(200).json({message: "Logged In", authKey: user.authKey, id: user._id})
 
     } catch (err) {
         res.status(500).json({
@@ -107,6 +110,18 @@ router.post('/update-desc', authUser, async (req, res) => {
     }
 })
 
+router.get('/get/:id', async (req, res) => {
+    try {
+
+        const user = await User.findById(req.params.id)
+        res.status(200).json({user})
+    } catch (err) {
+        res.status(500).json({
+            message: "A server side error occured!"
+        })
+        console.log(err)
+    }
+})
 
 const generateRandomString = () => {
     return crypto.randomBytes(64).toString('hex')

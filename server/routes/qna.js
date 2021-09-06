@@ -89,9 +89,10 @@ router.delete('/q/:id', authUser, async (req, res) => {
 })
 
 
-router.post('/a/all', authUser, async (req, res) => {
+router.get('/a/all/:id', async (req, res) => {
     try {
-        const answers = await Answer.find({email: req.email})
+        const user = await User.findById(req.params.id)
+        const answers = await Answer.find({email: user.email})
         res.status(200).json({answers})
     } catch (err) {
         console.log(err.message)

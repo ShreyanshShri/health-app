@@ -35,6 +35,7 @@ const QnA = () => {
                             username={q.username}
                             profile={q.profile}
                             content={q.content}
+                            postedAt={q.postedAt}
                         />
             })}
         </div>

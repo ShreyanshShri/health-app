@@ -19,11 +19,14 @@ router.post('/register', async(req, res) => {
         let consultant = new Consultant(req.body)
         consultant.authKey = generateRandomString()
         consultant.password = await bcrypt.hash(password, 10)
+        consultant.profile_pic = 'test-avatar'
+        consultant.about = 'hi im using health++'
 
         await consultant.save()
         res.status(200).json({
             message: "Account Created",
-            authKey: consultant.authKey
+            authKey: consultant.authKey,
+            id: consultant._id
         })
 
     } catch (err) {
@@ -50,7 +53,7 @@ router.post('/login', async(req, res) => {
         consultant.authKey = generateRandomString()
         await consultant.save()
 
-        res.status(200).json({message: "Logged In", authKey: consultant.authKey})
+        res.status(200).json({message: "Logged In", authKey: consultant.authKey, id: consultant._id})
 
     } catch (err) {
         res.status(500).json({

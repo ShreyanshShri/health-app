@@ -32,6 +32,7 @@ const Login = () => {
                 password: ''
             })
             localStorage.setItem('authKey', res.data.authKey)
+            localStorage.setItem('userID', res.data.id)
         } catch (err) {
             setLoading(false)
             console.log(err.response)
