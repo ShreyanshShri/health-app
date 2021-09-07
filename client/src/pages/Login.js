@@ -33,6 +33,8 @@ const Login = () => {
             })
             localStorage.setItem('authKey', res.data.authKey)
             localStorage.setItem('userID', res.data.id)
+            localStorage.setItem('username', res.data.username)
+            localStorage.setItem('email', res.data.email)
         } catch (err) {
             setLoading(false)
             console.log(err.response)

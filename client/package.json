@@ -13,7 +13,9 @@
     "react-helmet": "^6.1.0",
     "react-router-dom": "^5.2.1",
     "react-scripts": "4.0.3",
+    "react-scroll-to-bottom": "^4.1.2",
     "shake.js": "^1.2.2",
+    "socket.io-client": "^4.2.0",
     "sweetalert": "^2.1.2",
     "web-vitals": "^1.1.2"
   },

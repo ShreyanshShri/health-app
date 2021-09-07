@@ -17,9 +17,9 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.post('/comments/get', async(req, res) => {
+router.get('/comments/get/:id', async(req, res) => {
     try {
-        const user = await User.findOne({authKey: req.body.password})
+        const user = await User.findById(req.params.id)
         const comments = await Comment.find({email: user.email})
         res.status(200).json({
             comments
@@ -115,9 +115,22 @@ router.post('/comment/:id', authUser, async (req, res) => {
 router.put('/comments/:id', authUser, async (req, res) => {
     try {
         let comment = await Comment.findById(req.params.id)
+        if(comment.email != req.email) return res.status(400).json({message: "You are not authorized to modify this document!"})
         comment.comment = req.body.comment
         await comment.save()
         res.status(200).json({message: "Comment Updated", comment: comment})
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({messsage: "A server side error occured!"})
+    }
+})
+
+router.delete('/comment/:id', authUser, async (req, res) => {
+    try {
+        const comment = await Comment.findById(req.params.id)
+        if(comment.email != req.email) return res.status(400).json({message: "You are not authorized to modify this document!"})
+        await comment.delete()
+        res.status(200).json({message: "Comment Deleted"})
     } catch (err) {
         console.log(err)
         res.status(500).json({messsage: "A server side error occured!"})

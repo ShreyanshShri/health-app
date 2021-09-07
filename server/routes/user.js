@@ -40,7 +40,9 @@ router.post('/register', async(req, res) => {
         res.status(200).json({
             message: "Account Created",
             authKey: user.authKey,
-            id: user._id
+            id: user._id,
+            username: user.username,
+            email: user.email
         })
 
     } catch (err) {
@@ -67,7 +69,8 @@ router.post('/login', async(req, res) => {
         user.authKey = generateRandomString()
         await user.save()
 
-        res.status(200).json({message: "Logged In", authKey: user.authKey, id: user._id})
+        res.status(200).json({message: "Logged In", authKey: user.authKey, id: user._id, username: user.username,
+        email: user.email})
 
     } catch (err) {
         res.status(500).json({

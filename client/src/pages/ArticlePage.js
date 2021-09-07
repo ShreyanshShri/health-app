@@ -19,9 +19,10 @@ const ArticlePage = ({ match }) => {
             setLoading(false)
         } catch (err) {
             setLoading(false)
+            console.log(err)
             swal({
                 title: "Error !",
-                text: `${err.response.data.message}`,
+                text: `${err.response && err.response.data.message}`,
                 icon: "error",
                 button: "Try Again",
               })        
@@ -51,7 +52,7 @@ const ArticlePage = ({ match }) => {
                     <span className='container'>{new Date(article.createdAt).toLocaleDateString()}</span>
                 </div>
                 <p className='para container'  dangerouslySetInnerHTML={{ __html: article.content }}></p>
-                <Comments comments={article.comments} />
+                <Comments comments={article.comments} id={article._id} />
             </div>
             </Fragment>}
         </article>

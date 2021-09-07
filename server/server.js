@@ -14,7 +14,11 @@ const Chats = require('./models/Chats')
 
 const PORT = process.env.PORT || 5000
 const server = app.listen(PORT, () => console.log(`Server started at port ${PORT}`))
-const io = socketio(server)
+const io = socketio(server, {
+    cors: {
+        origin: "http://localhost:3000",
+    }
+})
 
 
 const articleRoute = require('./routes/articles')
@@ -32,20 +36,17 @@ app.get("/", (req, res) => {
 })
 
 
-
+let chatId = null;
 // socketio stuff
     io.on('connection', socket => {
         console.log("connected")
 
-        let chatId = null;
-
-        socket.on('join-user', async({sender_authKey, reciever_email}) => {
-
+        socket.on('join-user', async({sender_authKey, reciever_id}) => {
             const sender = await User.findOne({ authKey: sender_authKey })
-            const reciever = await Consultant.findOne({ email: reciever_email })
+            const reciever = await Consultant.findById(reciever_id)
             
-            if (!sender) console.log(sender)
-            if (!reciever) return console.log(reciever)
+            if (!sender) console.log("sender: " + sender)
+            if (!reciever) return console.log("reciever :" + reciever)
 
             const case1 = await Chats.findOne({
                 client: sender.email,
@@ -90,8 +91,9 @@ app.get("/", (req, res) => {
             } else {
                 console.log('join user')
                 let chat = await Chats.findById(chatId)
-                socket.join(chat.id)
-                socket.emit('message', {msgs: chat.chats})
+                socket.join(chat._id)
+                chatId = chat._id
+                socket.emit('message', chat.chats)
                 socket.emit('user-joined')
             }
 
@@ -103,6 +105,7 @@ app.get("/", (req, res) => {
             socket.to(chatId).emit('message', {text, sender, time})
 
             try {
+                console.log(chatId)
                 let chat = await Chats.findById(chatId)
                 let prevChats = chat.chats
                 chat.chats = [...prevChats, {
@@ -117,6 +120,8 @@ app.get("/", (req, res) => {
         socket.on('disconnect', () => {
             console.log("disconnected")
             chatId = null;
+            socket.removeAllListeners();
+
         })
     })
 

@@ -15,7 +15,8 @@ router.post('/register', async(req, res) => {
     }
 
     try {
-        
+        const test = await Consultant.findOne({email: email})
+        if(test) return res.status(400).json({message: "Acocunt already exists with this email"})
         let consultant = new Consultant(req.body)
         consultant.authKey = generateRandomString()
         consultant.password = await bcrypt.hash(password, 10)
@@ -26,7 +27,9 @@ router.post('/register', async(req, res) => {
         res.status(200).json({
             message: "Account Created",
             authKey: consultant.authKey,
-            id: consultant._id
+            id: consultant._id,
+            username: consultant.username,
+            email: consultant.email
         })
 
     } catch (err) {
@@ -53,7 +56,8 @@ router.post('/login', async(req, res) => {
         consultant.authKey = generateRandomString()
         await consultant.save()
 
-        res.status(200).json({message: "Logged In", authKey: consultant.authKey, id: consultant._id})
+        res.status(200).json({message: "Logged In", authKey: consultant.authKey, id: consultant._id, username: consultant.username,
+        email: consultant.email})
 
     } catch (err) {
         res.status(500).json({
@@ -63,7 +67,17 @@ router.post('/login', async(req, res) => {
     }
 })
 
-
+router.get('/', async (req,res ) => {
+    try {
+        const consultants = await Consultant.find().select(['username', 'email', 'joined', '_id', 'profile_pic', 'about']).exec()
+        res.status(200).json({consultants})
+    } catch (err) {
+        res.status(500).json({
+            message: "A server side error occured!"
+        })
+        console.log(err)
+    }
+})
 
 const generateRandomString = () => {
     return crypto.randomBytes(64).toString('hex')
