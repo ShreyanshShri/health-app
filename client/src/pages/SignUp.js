@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 const SignUp = () => {
 
@@ -46,19 +47,19 @@ const SignUp = () => {
     return (
         <div>
             <form onSubmit={handleSubmit} className='container'>
-                    <h2 className='h2-red'>Create an account</h2>
+                    <h2><span className='color-green'>C</span>reate an <span className='color-green'>A</span>ccount</h2>
 
                     <label>Name</label>
-                    <input name='username' type="text" value={formData.name} placeholder="Name" onChange={handleChange} required={true} disabled={loading} />
+                    <input className='form-control' name='username' type="text" value={formData.name} placeholder="Name" onChange={handleChange} required={true} disabled={loading} />
 
                     <label>Email address</label>
-                    <input name='email' type="email" value={formData.email} placeholder="Email" onChange={handleChange} disabled={loading} />
+                    <input className='form-control' name='email' type="email" value={formData.email} placeholder="Email" onChange={handleChange} disabled={loading} />
 
                     <label>Password</label>
-                    <input name='password' type="password" value={formData.password} placeholder="Password" onChange={handleChange} required={true} disabled={loading} />
-                    <br />
-                    <br />
-                    <button className='btn-o-red' type="submit">Submit</button>
+                    <input className='form-control' name='password' type="password" value={formData.password} placeholder="Password" onChange={handleChange} required={true} disabled={loading} />
+
+                    <button className='btn btn-primary mt-2' type="submit">Submit</button>
+                    <br/><br /><Link to='/login'>Already have an account? LogIn</Link>
             </form>
         </div>
     )

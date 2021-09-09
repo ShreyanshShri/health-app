@@ -9,6 +9,7 @@ import Comments from '../components/articles/Comments'
 const ArticlePage = ({ match }) => {
     const [article, setArticle] = useState({})
     const [loading, setLoading] = useState(true)
+    const [comments, setComments] = useState(null)
 
     const fetchData = async() => {
         try {
@@ -16,6 +17,7 @@ const ArticlePage = ({ match }) => {
             const data = res.data
             console.log(data)
             setArticle(data)
+            setComments(res.data.article.comments)
             setLoading(false)
         } catch (err) {
             setLoading(false)
@@ -52,7 +54,7 @@ const ArticlePage = ({ match }) => {
                     <span className='container'>{new Date(article.createdAt).toLocaleDateString()}</span>
                 </div>
                 <p className='para container'  dangerouslySetInnerHTML={{ __html: article.content }}></p>
-                <Comments comments={article.comments} id={article._id} />
+                <Comments comments={comments} id={article._id} setComments={setComments} />
             </div>
             </Fragment>}
         </article>

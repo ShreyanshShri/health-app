@@ -21,10 +21,11 @@ nav ul{
     min-width: 100vw;
     position: fixed;
     top: 0vh;
-    background: rgba( 255, 255, 255, 0.25 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 14.5px );
-    -webkit-backdrop-filter: blur( 14.5px );
+background: rgba( 0, 0, 0, 0.55 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 9px );
+-webkit-backdrop-filter: blur( 9px );
+border-radius: 10px;
     z-index: 100000;
     transition: 0.5s;
 }
@@ -114,6 +115,7 @@ nav ul h2{
     top: 0;
     right: 40px;
     cursor: pointer;
+    color: white;
 }
 
 nav ul li a{

@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 const Login = () => {
 
@@ -46,16 +47,17 @@ const Login = () => {
     return (
         <div>
             <form onSubmit={handleSubmit} className='container'>
-                    <h2 className='h2-red'>Send Feedback</h2>
+            <h2><span className='color-green'>W</span>elcome <span className='color-green'>B</span>ack</h2>
 
                     <label>Email address</label>
-                    <input name='email' type="email" value={formData.email} placeholder="Email" onChange={handleChange} disabled={loading} />
+                    <input className='form-control' name='email' type="email" value={formData.email} placeholder="Email" onChange={handleChange} disabled={loading} />
 
                     <label>Password</label>
-                    <input name='password' type="password" value={formData.password} placeholder="Password" onChange={handleChange} required={true} disabled={loading} />
+                    <input className='form-control' name='password' type="password" value={formData.password} placeholder="Password" onChange={handleChange} required={true} disabled={loading} />
                     <br />
-                    <br />
-                    <button className='btn-o-red' type="submit">Submit</button>
+                    <button className='btn btn-primary' type="submit">Submit</button>
+
+                    <br/><br /><Link to='/login'>Create a new Account</Link>
             </form>
         </div>
     )

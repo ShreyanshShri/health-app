@@ -3,7 +3,7 @@ import swal from 'sweetalert'
 import {Button} from 'react-bootstrap'
 import axios from 'axios'
 
-const Comments = ({comments, id}) => {
+const Comments = ({comments, id, setComments}) => {
     
     const [commentVal, setCommentVal] = useState('')
 
@@ -24,6 +24,14 @@ const Comments = ({comments, id}) => {
                 button: 'OK'
             })
 
+            console.log(res.data)
+
+            setComments(prev => {
+                if(Array.isArray(prev)) {
+                    return [res.data.comment, ...prev]
+                }
+                return [res.data.comment]
+            })
         } catch (err) {
             console.log(err.response)
             swal({
@@ -72,7 +80,7 @@ const CommentCard = ({comment}) => {
             <p  style={{margin: '0'}}>{comment.comment}</p>
             <div className='d-flex' style={{alignItems: "center", justifyContent:'space-between'}}>
                 <h6>{comment.username}</h6>
-                <p style={{margin: '0'}}>{comment.postedAt}</p>
+                <p style={{margin: '0'}}>{new Date(comment.postedAt).toLocaleDateString()}</p>
             </div>
         </div>
     )

@@ -104,7 +104,7 @@ router.post('/comment/:id', authUser, async (req, res) => {
         await article.save()
         res.status(200).json({
             message: "Comment Posted",
-            article: article
+            comment: comment
         })
     } catch (err) {
         console.log(err)
