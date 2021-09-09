@@ -53,9 +53,6 @@ router.post('/login', async(req, res) => {
             return res.status(400).json({message: "Invalid Password"})
         }
 
-        consultant.authKey = generateRandomString()
-        await consultant.save()
-
         res.status(200).json({message: "Logged In", authKey: consultant.authKey, id: consultant._id, username: consultant.username,
         email: consultant.email})
 

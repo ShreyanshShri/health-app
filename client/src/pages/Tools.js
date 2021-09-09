@@ -24,9 +24,9 @@ const Tools = () => {
         <div>
             <div className='container'>
                 <ul style={ulStyles}>
-                    <li onClick={() => switchpage('bmi')} style={{...liStyles, background:  page==='articles' && '#eee'}}>BMI Calculator</li>
-                    <li onClick={() => switchpage('calorie')} style={{...liStyles, background:  page==='contacts' && '#eee'}}>Calorie Calculator</li>
-                    <li onClick={() => switchpage('waist-hip')} style={{...liStyles, background:  page==='contacts' && '#eee'}}>Calorie Calculator</li>
+                    <li onClick={() => switchpage('bmi')} style={{...liStyles, background:  page==='bmi' && '#eee'}}>BMI Calculator</li>
+                    <li onClick={() => switchpage('calorie')} style={{...liStyles, background:  page==='calorie' && '#eee'}}>Calorie Calculator</li>
+                    <li onClick={() => switchpage('waist-hip')} style={{...liStyles, background:  page==='waist-hip' && '#eee'}}>Calorie Calculator</li>
                 </ul>
             </div>
             {

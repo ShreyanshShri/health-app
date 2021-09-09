@@ -54,21 +54,29 @@ const Thread = ({match}) => {
         fetchData()
     }, [])
 
+    const randomStyles = {
+        display: 'flex',
+        justifyContent: 'space-between'
+    }
 
     return (
-        <div>
+        <div className='container'>
             {question && 
             <React.Fragment>
-            <div className='question'>
-            <p>{question.content}</p>
+            <div className='question mt-3'>
+            <h3>{question.content}</h3>
             <div className='q-user-info'>
-                <img src={`/uploads/${question.profile}`} /><p>{question.username}</p>
-                <span>{question.postedAt}</span>
+                <div className='d-flex align-items-center'><img src={`/uploads/${question.profile}`} /><p style={{margin: '0'}}>{question.username}</p></div>
+                <span>{new Date(question.postedAt).toLocaleDateString()}</span>
             </div>
         </div>
-        <input type="text" name="comment" value={commentVal} onChange={(e) => setCommentVal(e.target.value)} />
+        <div style={randomStyles}>
+        <input className='form-control' type="text" name="comment" value={commentVal} onChange={(e) => setCommentVal(e.target.value)} />
             <button onClick={postData} className='btn btn-primary'>Post</button>
-        <div className='answers'>
+            </div>
+        <div className='answers mt-2'>
+            <hr />
+            <h2><span className='color-green'>A</span>nswers</h2>
             {question.answers.map((ans, id) => {
                 return <AnswerCard 
                     username={ans.username}

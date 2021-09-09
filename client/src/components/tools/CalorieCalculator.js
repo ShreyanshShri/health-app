@@ -29,7 +29,7 @@ const CalorieCalculator = () => {
     }
 
     return (
-        <div>
+        <div className='container'>
             <Form.Label>Weight (in kg)</Form.Label>
             <Form.Control type='number' name='weight' value={bodyStats.weight} onChange={handleChange} />
             <Form.Label>Height (in cm)</Form.Label>

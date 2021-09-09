@@ -24,7 +24,7 @@ const BmiCalculator = () => {
     }
 
     return (
-        <div>
+        <div className='container'>
             <Form.Label>Weight (in kg)</Form.Label>
             <Form.Control type='number' name='weight' value={weight} onChange={(e) => setWeight(e.target.value)} />
             <Form.Label>Height (in cm)</Form.Label>

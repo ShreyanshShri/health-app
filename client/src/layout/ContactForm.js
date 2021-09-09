@@ -47,20 +47,18 @@ const ContactForm = () => {
                     <h2 className='h2-red'>Send Feedback</h2>
 
                         <label>Name</label>
-                        <input name='name' type="text" value={formData.name} placeholder="Name" onChange={handleChange} required={true} disabled={loading} />
+                        <input className='form-control' name='name' type="text" value={formData.name} placeholder="Name" onChange={handleChange} required={true} disabled={loading} />
 
     
 
                         <label>Email address</label>
-                        <input name='email' type="email" value={formData.email} placeholder="Email" onChange={handleChange} disabled={loading} />
+                        <input className='form-control' name='email' type="email" value={formData.email} placeholder="Email" onChange={handleChange} disabled={loading} />
     
     
                         <label>Message</label>
-                        <textarea name='msg' type="text" value={formData.msg} placeholder="Enter Your Message" onChange={handleChange} required={true} disabled={loading} />
+                        <textarea className='form-control' name='msg' type="text" value={formData.msg} placeholder="Enter Your Message" onChange={handleChange} required={true} disabled={loading} />
 
-                    <br />
-                    <br />
-                    <button className='btn-o-red' type="submit">
+                    <button className='btn btn-primary my-2' type="submit">
                         Submit
                     </button>
                 </form>

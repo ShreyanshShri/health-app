@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import Shake from 'shake.js'
 
 const Pedometer = () => {
@@ -17,6 +17,11 @@ const Pedometer = () => {
 
             //put your own code here etc.
             console.log('brrr')
+        }
+
+        return () => {
+            myShakeEvent.stop()
+            window.removeEventListener('shake', shakeEventDidOccur, false)
         }
         // eslint-disable-next-line
     }, [])

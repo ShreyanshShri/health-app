@@ -91,7 +91,18 @@ nav a{
 }
 
 .ul-active, .ul-active > a{
-    color: rgb(255, 21, 21) !important;
+    color: #009abb !important;
+}
+
+.ul-fill{
+    color: white;
+    background-color: #009abb;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.ul-fill a{
+    color: white;
 }
 
 nav h2{
@@ -106,10 +117,8 @@ nav ul h2{
 }
 
 nav ul li a{
-    color: black;
     text-decoration: none;
     font-size: 1.8em;
-    color: white;
 }
 
 
@@ -185,35 +194,11 @@ label{
     margin-top: 25px;
 }
 
-.container{
-    padding-left: 10vw;
-    padding-right: 10vw;
-}
-
 form{
     position: relative;
     padding-top: 20px;
 }
 
-form::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.2);
-    z-index: -100;
-    clip-path: polygon(0% 0, 40% 0, 70% 100%, 0% 100%);
-}
-
-input, textarea{
-    background: none;
-    width: 100%;
-    height: 36px;
-    border: 1px solid rgba(255, 255, 255 ,0.2);
-    border-radius: 10px;
-    padding: 3px;
-    padding-left: 10px;
-    font-size: 18px;
+form{
+    background-color: rgb(250, 250, 250);
 }

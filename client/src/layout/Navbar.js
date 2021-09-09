@@ -26,11 +26,13 @@ const Navbar = ({history}) => {
     }
 
     const redColor = {
-        color:'red'
+        color:'#009abb'
     }
 
+    const fontColor = `rgb(${map(pageOffset, 0, 100, 0, 255)}, ${map(pageOffset, 0, 100, 0, 255)}, ${map(pageOffset, 0, 100, 0, 255)})`
+
     const navStyles = {
-        background: `rgba(26, 26, 26, ${map(pageOffset, 0, 100, 0, 1)})`
+        background: `rgb(${map(pageOffset, 0, 100, 238, 30)}, ${map(pageOffset, 0, 100, 238, 30)}, ${map(pageOffset, 0, 100, 238, 30)})`
     }
 
     useEffect(function() {
@@ -62,17 +64,19 @@ const Navbar = ({history}) => {
 
     return (
         <nav style={navStyles}>
-            <Link to='/'><h2><span style={redColor}>C</span>ode<span style={redColor}>F</span>ever</h2></Link>
+            <Link to='/' style={{color: fontColor}}><h2><span style={redColor}>H</span>ealth<span style={redColor}>++</span></h2></Link>
             <ul style={ulStyles}>
                 <h2 onClick={() => setNavState(false)}>X</h2>
                 {/* eslint-disable-next-line */}
-                <li onClick={() => setActive(0)} className={ulActive === 0 && 'ul-active'}><Link to='/'>Home</Link></li>
+                <li onClick={() => setActive(0)} className={ulActive === 0 && 'ul-active'}><Link to='/' style={{color: fontColor}}>Home</Link></li>
                 {/* eslint-disable-next-line */}
-                <li onClick={() => setActive(1)} className={ulActive === 1 && 'ul-active'}><Link to='/articles'>Articles</Link></li>
+                <li onClick={() => setActive(1)} className={ulActive === 1 && 'ul-active'}><Link to='/articles' style={{color: fontColor}}>Articles</Link></li>
                 {/* eslint-disable-next-line */}
-                <li onClick={() => setActive(2)} className={ulActive === 2 && 'ul-active'}><Link to='/tools'>Tools</Link></li>
+                <li onClick={() => setActive(2)} className={ulActive === 2 && 'ul-active'}><Link to='/tools' style={{color: fontColor}}>Tools</Link></li>
+                {/* eslint-disable-next-line */}
+                <li onClick={() => setActive(3)} className={ulActive === 3 && 'ul-active'}><Link to='/qna' style={{color: fontColor}}>QnA</Link></li>
                  {/* eslint-disable-next-line */}
-                 {localStorage.getItem('authKey') && <li className={'ul-active'}><Link to='/dashboard'>Dashboard</Link></li>}
+                 {localStorage.getItem('authKey') ? <li className={'ul-fill'}><Link to='/dashboard'>Dashboard</Link></li> : <li className={'ul-fill'}><Link to='/signup'>Sign Up</Link></li>}
             </ul>
             {!navIsToggled && <h2 className='hamburger' onClick={() => setNavState(true)}>
                 <div className='bar-1'></div>

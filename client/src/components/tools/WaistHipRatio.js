@@ -12,7 +12,7 @@ const WaistHipRatio = () => {
     }
 
     return (
-        <div>
+        <div className='container'>
             <Form.Label>Waist (from navel)</Form.Label>
             <Form.Control type='number' name='waist' value={waist} onChange={(e) => setWaist(e.target.value)} />
             <Form.Label>Hip (from buttock) </Form.Label>
