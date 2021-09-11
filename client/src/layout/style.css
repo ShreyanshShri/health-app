@@ -201,6 +201,37 @@ form{
     padding-top: 20px;
 }
 
-form{
+.bg-grey{
     background-color: rgb(250, 250, 250);
+}
+
+.idk{
+    display: flex;
+}
+
+.loader{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.idk div, .content-box{
+    background: #eee;
+}
+
+.circle{
+    width: 30px;
+    height: 30px;
+    border-radius: 10000px;
+}
+.title{
+    width: 70%;
+    height: 25px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+.content-box{
+    width: 100%;
+    height: 100px;
+    border-radius: 15px;
+    margin-top: 15px;
 }

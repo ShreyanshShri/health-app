@@ -6,6 +6,7 @@ const authUser = require('../utils/authUser')
 const Article = require('../models/Article')
 const Comment = require('../models/Comment')
 const User = require('../models/User')
+const Consultant = require('../models/Consultant')
 
 router.get('/', async (req, res) => {
     try {
@@ -19,8 +20,12 @@ router.get('/', async (req, res) => {
 
 router.get('/comments/get/:id', async(req, res) => {
     try {
-        const user = await User.findById(req.params.id)
-        const comments = await Comment.find({email: user.email})
+        let user = await User.findById(req.params.id)
+        if (!user) {
+            user = await Consultant.findById(req.params.id)
+        }
+        const comments = await Comment.find({email: user.email}).sort({createdAt: 'desc'})
+        console.log(comments)
         res.status(200).json({
             comments
         })

@@ -8,3 +8,43 @@ body {
 .color-green{
   color: #009abb !important;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #009abb;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #009abb;
+}
+
+.react-scroll-to-bottom{
+  border-top: 1px solid rgba(0,0,0,0.2);
+  height: 80vh;
+}
+
+.btn-primary{
+  background: #009abb !important;
+}
+
+.btn-outline-primary{
+  color: #009abb !important;
+  border-color: #009abb !important;
+}
+
+.btn-outline-primary:hover{
+  color: white !important;
+  background: #009abb !important;
+}

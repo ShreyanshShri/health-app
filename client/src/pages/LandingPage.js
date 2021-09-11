@@ -6,14 +6,31 @@ import caclulator from '../assets/calculator.jpg'
 import consultancy from '../assets/consultancy.jpg'
 import personalisation from '../assets/personalisation.jpg'
 import qna from '../assets/qna.jpg'
+import MetaTags from '../components/MetaTags'
+
+import yogaGirl from '../assets/yoga-girl.png'
 
 const LandingPage = () => {
     return (
         <div>
+            <MetaTags 
+                title='Health++ - A complete solution to all your health problems'
+                description='A complete solution to all your health problems'
+                keywords='motivation, health, fitness, yoga, bmi'
+                url='https://yoururl.com'
+                imageurl='source.unsplash.com/random'
+                type='home page'
+            />
              <div className='hero'>
-                <h2>Welcome To</h2>
-                <h1>health++</h1>
-                <p>A one step solution to all your health problems</p>
+                 <div className=' container flex-one' style={{alignItems: 'center', justifyContent:'space-between', overflow: 'hidden' }}>
+                 <div className='hero-text'>
+                <h4>Welcome To</h4>
+                <h1 style={{fontSize: '3em'}}><span className='color-green'>H</span>ealth<span className='color-green'>++</span></h1>
+                <h4>Your Personal <span className='color-green'>H</span>ealth <span className='color-green'>A</span>ssistant</h4>
+                <Link to='/signup'><button className='btn btn-outline-primary'>Get Started</button></Link>
+                </div>
+                <img src={yogaGirl} alt='yoga img' className='yoga-girl' />
+                </div>
             </div>
             <div className='features'>
                 <div className='feature container'>

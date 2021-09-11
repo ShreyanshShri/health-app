@@ -9,6 +9,7 @@ const AddArticle = () => {
     
     const [state, setState] = useState("Post Article")
     const [articleId, setArticleId] = useState(null)
+    const [loading, setLoading] = useState(false)
 
     const postArticle = async (article) => {
         const formData = {
@@ -18,9 +19,11 @@ const AddArticle = () => {
 
         try {
             setState('Posting Article... Please Wait')
+            setLoading(true)
             const res = await axios.post('/articles', formData)
             setArticleId(res.data.id)
             setState(res.data.message)
+            setLoading(false)
             swal({
                 title: res.data.message,
                 icon: "success",
@@ -28,6 +31,7 @@ const AddArticle = () => {
               })
         
         } catch (err) {
+            setLoading(false)
             swal({
                 title: "Error !",
                 text: `${err.response.data.message}`,
@@ -47,8 +51,9 @@ const AddArticle = () => {
                     title: '',
                     description: '',
                     wallpaper: '',
-                    markdown: ''
+                    markdown: '',
                 }}
+                loading={loading}
                 postArticle={postArticle}
             />
             {state === "Article Uploaded" && <Redirect to={`/articles/slug/${articleId}`} />}

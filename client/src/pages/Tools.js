@@ -4,6 +4,8 @@ import BmiCalculator from '../components/tools/BmiCalculator'
 import CalorieCalculator from '../components/tools/CalorieCalculator'
 import WaistHipRatio from '../components/tools/WaistHipRatio'
 
+import MetaTags from '../components/MetaTags'
+
 const Tools = () => {
 
     const [page, switchpage] = useState('bmi')
@@ -22,6 +24,14 @@ const Tools = () => {
 
     return (
         <div>
+            <MetaTags 
+                title='Health++ - Tools'
+                description='A complete solution to all your health problems'
+                keywords='motivation, health, fitness, yoga, bmi'
+                url='https://yoururl.com'
+                imageurl='source.unsplash.com/random'
+                type='page'
+            />
             <div className='container'>
                 <ul style={ulStyles}>
                     <li onClick={() => switchpage('bmi')} style={{...liStyles, background:  page==='bmi' && '#eee'}}>BMI Calculator</li>

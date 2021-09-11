@@ -18,6 +18,7 @@ const Chat = ({match}) => {
       })
 
     useEffect(() => {
+        console.log('sent  join req')
             socket.emit('join-user', {
                 sender_authKey: localStorage.getItem('authKey'),
                 reciever_id: match.params.id
@@ -46,22 +47,24 @@ const Chat = ({match}) => {
 
     return (
         <div>
-            <ScrollToBottom className='messages'>
+            <ScrollToBottom className='messages container mt-3 react-scroll-to-bottom'>
                 {oldMsgs && oldMsgs.map((m, i) => {
                     return <div className='message container my-2'>
-                            <p><span className='left purple-text'>{m.sender}</span><span className='right text-muted'>{m.time}</span></p><br />
-                            <p className='m-7'>{m.text}</p>
+                            <p className='b'><span className='left purple-text'>{m.sender}</span><span className='right text-muted'>{m.time}</span></p><br />
+                            <p style={{margin: '0'}}>{m.text}</p>
                         </div>
                 })}
                 {newMsgs && newMsgs.map((m, i) => {
                     return <div className='message container my-2'>
-                                <p><span className='left purple-text'>{m.sender}</span><span className='right text-muted'>{m.time}</span></p><br />
+                                <p className='b'><span className='left purple-text'>{m.sender}</span><span className='right text-muted'>{m.time}</span></p>
                                 <p className='m-7'>{m.text}</p>
                             </div>
                 })}
             </ScrollToBottom>
-            <input type='text' name='msg' placeholder='Enter Your Message...' className={`inp width-9`} onChange={(e) => setMessage(e.target.value)} value={msg} />
-            <button onClick={sendMessage} className='btn-outline-primary ml-2 sendBtn' style={{border:'none', outline:'none', padding:'5px'}}><i className='fa fa-paper-plane fa-2x' />Send</button>
+            <div style={{display: "flex"}} className='container'>
+            <input type='text' name='msg' placeholder='Enter Your Message...' className={`inp width-9 form-control`} onChange={(e) => setMessage(e.target.value)} value={msg} />
+            <button onClick={sendMessage} className='btn btn-outline-primary ml-2 sendBtn' style={{outline:'none', padding:'5px'}}><i className='fa fa-paper-plane fa-2x' />Send</button>
+            </div>
         </div>
     )
 }

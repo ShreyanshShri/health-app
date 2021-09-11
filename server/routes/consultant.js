@@ -2,8 +2,21 @@ const express=require('express')
 const router= express.Router()
 const crypto = require('crypto')
 const bcrypt = require("bcrypt")
-
+const authUser = require('../utils/authUser')
 const Consultant = require('../models/Consultant')
+const multer = require('multer')
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, path.join(__dirname + '/../uploads'))
+    },
+    filename: function (req, file, cb) {
+      cb(null, generateRandomString().slice(0, 10))
+    }
+})
+
+const upload = multer({ storage: storage })
+
 
 router.post('/register', async(req, res) => {
     const {email, password} = req.body
@@ -64,9 +77,22 @@ router.post('/login', async(req, res) => {
     }
 })
 
+router.get('/get/:id', async (req, res) => {
+    try {
+
+        const consultant = await Consultant.findById(req.params.id)
+        res.status(200).json({consultant})
+    } catch (err) {
+        res.status(500).json({
+            message: "A server side error occured!"
+        })
+        console.log(err)
+    }
+})
+
 router.get('/', async (req,res ) => {
     try {
-        const consultants = await Consultant.find().select(['username', 'email', 'joined', '_id', 'profile_pic', 'about']).exec()
+        const consultants = await Consultant.find().select(['username', 'email', 'joined', '_id', 'profile_pic', 'about']).sort({joined: 'desc'}).exec()
         res.status(200).json({consultants})
     } catch (err) {
         res.status(500).json({
@@ -75,6 +101,40 @@ router.get('/', async (req,res ) => {
         console.log(err)
     }
 })
+
+router.post('/change-pfp', upload.single("avatar"), authUser, async(req, res) => {
+    try {
+        const user = await Consultant.findOne({ authKey: req.body.password })
+        console.log(req.file)
+        user.profile_pic = req.file.filename
+        await user.save()
+        res.status(200).json({message: "Profile Updated"})
+    } catch (err) {
+        res.status(500).json({
+            message: "A server side error occured!"
+        })
+        console.log(err)
+    }
+})
+
+router.post('/update-desc', authUser, async (req, res) => {
+    try {
+
+        let user = await Consultant.findOne({authKey: req.body.password})
+        if(!user) return res.status(400).json({message: "No user found! Try loggin in agai"})
+        
+        user.about = req.body.desc
+        await user.save()
+        res.status(200).json({message: "Profile Updated", desc: req.body.desc})
+
+    } catch (err) {
+        res.status(500).json({
+            message: "A server side error occured!"
+        })
+        console.log(err)
+    }
+})
+
 
 const generateRandomString = () => {
     return crypto.randomBytes(64).toString('hex')

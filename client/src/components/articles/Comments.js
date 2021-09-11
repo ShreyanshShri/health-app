@@ -6,17 +6,18 @@ import axios from 'axios'
 const Comments = ({comments, id, setComments}) => {
     
     const [commentVal, setCommentVal] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const postData = async () => {
         try {
 
             if(commentVal === '') return
-            
+            setLoading(true)
             const res = await axios.post(`/articles/comment/${id}`, {
                 comment: commentVal,
                 password: localStorage.getItem("authKey")
             })
-            
+            setLoading(false)
             swal({
                 title: 'Success',
                 text: res.data.message,
@@ -34,6 +35,7 @@ const Comments = ({comments, id, setComments}) => {
             })
         } catch (err) {
             console.log(err.response)
+            setLoading(false)
             swal({
                 title: "Error !",
                 text: `${err.response ? err.response.data.message : "An error occured!"}`,
@@ -53,7 +55,7 @@ const Comments = ({comments, id, setComments}) => {
             <hr />
             <h2><span className="color-green">C</span>omments</h2>
             <div style={randomStyles}>
-            <input required type="text" name="comment" className='form-control d-inline mr-2' value={commentVal} onChange={(e) => setCommentVal(e.target.value)}  style={{width: "90%"}} />
+            <input required type="text" name="comment" className='form-control d-inline mr-2' value={commentVal} onChange={(e) => setCommentVal(e.target.value)}  style={{width: "90%"}} disabled={loading} />
             <button className='btn btn-primary ml-2 d-inline-block' onClick={postData}>Post</button>
             </div>
             <div className='comments-list'  style={{marginTop: "20px"}}>

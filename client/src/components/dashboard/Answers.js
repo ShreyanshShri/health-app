@@ -2,11 +2,13 @@ import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import swal from 'sweetalert'
 
+import Loader from '../../layout/Loader'
 import IDontKnowWhatToNameIt from './IDontKnowWhatToNameIt'
 
 const Answers = () => {
 
     const [answers, setAnswers] = useState(null)
+    const [loading, setLoading] = useState(false)
 
     const fetchData = async () => {
         try {
@@ -27,7 +29,7 @@ const Answers = () => {
 
     const onEdit = async(id, content) => {
         try {
-            
+            setLoading(true)
             const res = await axios.put(`/qna/a/${id}`, {
                 answer: content,
                 password: localStorage.getItem("authKey")
@@ -39,8 +41,9 @@ const Answers = () => {
                 icon: 'success',
                 button: 'OK'
             })
-
+            setLoading(false)
         } catch (err) {
+            setLoading(false)
             console.log(err.response)
             swal({
                 title: "Error !",
@@ -53,7 +56,7 @@ const Answers = () => {
 
     const onDelete = async (id) => {
         try {
-            
+            setLoading(true)
             const res = await axios.delete(`/qna/a/${id}`, {
                 data: {
                     password: localStorage.getItem("authKey")
@@ -65,8 +68,9 @@ const Answers = () => {
                 icon: 'success',
                 button: 'OK'
             })
-
+            setLoading(false)
         } catch (err) {
+            setLoading(false)
             console.log(err.response)
             swal({
                 title: "Error !",
@@ -85,14 +89,15 @@ const Answers = () => {
     return (
         <div>
             {
-                answers && answers.map((ans, i) => {
+                answers ? answers.map((ans, i) => {
                     return <IDontKnowWhatToNameIt 
                         content={ans.answer}
                         edit={onEdit}
                         del={onDelete}
                         id={ans._id}
+                        loading={loading}
                     />
-                })
+                }) : <Loader />
             }
         </div>
     )

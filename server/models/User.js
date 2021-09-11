@@ -27,6 +27,10 @@ const userSchema =new mongoose.Schema({
     joined: {
         type : Date,
         default : Date.now
+    },
+    footsteps: {
+        type: Number,
+        default: 0
     }
 })
 

@@ -3,11 +3,14 @@ import React, {useEffect, useState} from 'react'
 import swal from 'sweetalert'
 
 import AnswerCard from '../components/qna/AnswerCard'
+import MetaTags from '../components/MetaTags'
+import Loader from '../layout/Loader'
 
 const Thread = ({match}) => {
 
     const [question, setQuestion] = useState(null)
     const [commentVal, setCommentVal] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const fetchData = async function(){
         try {
@@ -26,7 +29,7 @@ const Thread = ({match}) => {
 
     const postData = async () => {
         try {
-
+            setLoading(true)
             const res = await axios.post(`/qna/a/${question._id}`, {
                 answer: commentVal,
                 password: localStorage.getItem("authKey")
@@ -38,8 +41,9 @@ const Thread = ({match}) => {
                 icon: 'success',
                 button: 'OK'
             })
-
+            setLoading(false)
         } catch (err) {
+            setLoading(false)
             console.log(err.response)
             swal({
                 title: "Error !",
@@ -56,27 +60,36 @@ const Thread = ({match}) => {
 
     const randomStyles = {
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginBottom: '20px'
     }
 
     return (
         <div className='container'>
-            {question && 
+            {question ?
             <React.Fragment>
+                <MetaTags 
+                    title={question.content}
+                    description={question.content}
+                    keywords='study, motivation, students, life, life lessons, xyz city'
+                    url='https://yoururl.com'
+                    imageurl='source.unsplash.com/random'
+                    type='article page'
+                />
             <div className='question mt-3'>
             <h3>{question.content}</h3>
             <div className='q-user-info'>
-                <div className='d-flex align-items-center'><img src={`/uploads/${question.profile}`} /><p style={{margin: '0'}}>{question.username}</p></div>
+                <div className='d-flex align-items-center'><img src={`/uploads/${question.profile}`} className='user-avatar' /><p style={{margin: '0'}}>{question.username}</p></div>
                 <span>{new Date(question.postedAt).toLocaleDateString()}</span>
             </div>
         </div>
-        <div style={randomStyles}>
-        <input className='form-control' type="text" name="comment" value={commentVal} onChange={(e) => setCommentVal(e.target.value)} />
-            <button onClick={postData} className='btn btn-primary'>Post</button>
-            </div>
         <div className='answers mt-2'>
             <hr />
             <h2><span className='color-green'>A</span>nswers</h2>
+            <div style={randomStyles}>
+        <input className='form-control' type="text" name="comment" value={commentVal} onChange={(e) => setCommentVal(e.target.value)} />
+            <button onClick={postData} className='btn btn-primary'>Post</button>
+            </div>
             {question.answers.map((ans, id) => {
                 return <AnswerCard 
                     username={ans.username}
@@ -88,7 +101,7 @@ const Thread = ({match}) => {
             })}
         </div>
         
-        </React.Fragment>}
+        </React.Fragment> : <Loader />}
         </div>
     )
 }

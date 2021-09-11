@@ -5,6 +5,7 @@ import swal from 'sweetalert'
 
 // import Loader from '../common/Loader'
 import Comments from '../components/articles/Comments'
+import Loader from '../layout/Loader'
 
 const ArticlePage = ({ match }) => {
     const [article, setArticle] = useState({})
@@ -38,7 +39,7 @@ const ArticlePage = ({ match }) => {
 
     return (
         <article>
-            {loading ? "Loading" : 
+            {loading ? <Loader /> : 
             <Fragment>
             <MetaTags 
                 title={article.title}

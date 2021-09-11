@@ -6,6 +6,9 @@ import {Link} from 'react-router-dom'
 import ProfileNavigator from './ProfileNavigator'
 import Answers from './Answers'
 import Comments from './Comments'
+import Loader from '../../layout/Loader'
+
+import './style.css'
 
 const Profile = () => {
 
@@ -14,9 +17,15 @@ const Profile = () => {
 
     const fetchUser = async () => {
         try {
-            
-            const res = await axios.get(`/user/get/${localStorage.getItem('userID')}`)
-            setUser(res.data.user)
+            let res;
+            if(localStorage.getItem('isConsultant') === 'true') {
+                console.log('herre')
+                res = await axios.get(`/consultant/get/${localStorage.getItem('userID')}`)
+                setUser(res.data.consultant)
+            } else {
+                res = await axios.get(`/user/get/${localStorage.getItem('userID')}`)
+                setUser(res.data.user)
+            }
             console.log(res.data.user)
         } catch (err) {
             console.log(err.response)
@@ -37,12 +46,16 @@ const Profile = () => {
 
     return (
         <div>
-            <div className='user-stats'>
-            <img src={`/uploads/${user.profile_pic}`} alt="pfp" />
+            <div className='user-stats container'>
+                {user ? <React.Fragment>
+                <div className='d-flex align-items-center justify-content-center' style={{flexDirection:"column"}}>
+                <img src={`/uploads/${user.profile_pic}`} alt="pfp" className='mb-2 user-avatar-big' />
                 <h3>{user.username}</h3>
                 <p>{user.about}</p>
-                <Link to='/user/edit-profile'><button className='btn-outline-primary'>Update profile</button></Link>
-                <ProfileNavigator switchPage={switchPage}/>
+                <Link to='/user/edit-profile'><button className='btn btn-outline-primary mb-4'>Update profile</button></Link>
+                </div>
+                </React.Fragment> : <Loader />}
+                <ProfileNavigator page={page} switchPage={switchPage}/>
                 {
                     page === 1 ? <Answers /> : <Comments />
                 }

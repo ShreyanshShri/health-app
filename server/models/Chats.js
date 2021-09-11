@@ -5,7 +5,15 @@ const chatsSchema =new mongoose.Schema({
         type: String,
         required: true
     },
+    client_id: {
+        type: String,
+        required: true
+    },
     consultant: {
+        type: String,
+        required: true
+    },
+    consultant_id: {
         type: String,
         required: true
     },

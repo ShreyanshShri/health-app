@@ -19,7 +19,6 @@ const Jokes = () => {
 
     return (
         <div>
-            Joke
             {joke &&<div dangerouslySetInnerHTML={{__html: joke}}></div>}
         </div>
     )

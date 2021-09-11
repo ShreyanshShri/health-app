@@ -42,7 +42,8 @@ const ContactForm = () => {
         }
     
         return (
-            <form onSubmit={handleSubmit} className='container'>
+            <div className='container-fluid bg-grey'>
+            <form onSubmit={handleSubmit}>
                     {/* {loading && <Loader />} */}
                     <h2 className='h2-red'>Send Feedback</h2>
 
@@ -62,6 +63,7 @@ const ContactForm = () => {
                         Submit
                     </button>
                 </form>
+                </div>
         )
 }
 

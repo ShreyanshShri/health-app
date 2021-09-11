@@ -28,6 +28,7 @@ import ContactForm from './layout/ContactForm'
 import AdminPage from "./pages/AdminPage"
 import AddArticle from './components/admin/AddArticle'
 import EditArticle from './components/admin/EditArticle'
+import EditProfile from "./pages/EditProfile"
 
 import ScrollToTop from './layout/ScrollToTop'
 
@@ -47,6 +48,7 @@ function App() {
         <Route exact path='/articles' component={ArticleList} />
         <Route exact path='/footsteps' component={Pedometer} />
         <Route exact path='/sound-therapy' component={SoundTherapy} />
+        <Route exact path='/user/edit-profile' component={EditProfile} />
         <Route exact path='/articles/:slug/:id' component={ArticlePage} />
         <Route exact path='/qna' component={QnA} />
         <Route exact path='/qna/:id' component={Thread} />

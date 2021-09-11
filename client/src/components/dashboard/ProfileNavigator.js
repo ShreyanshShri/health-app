@@ -1,10 +1,21 @@
 import React from 'react'
 
-const ProfileNavigator = ({switchPage}) => {
+const ProfileNavigator = ({page, switchPage}) => {
+const ulStyles={
+        display: 'flex',
+        padding: '0',
+        flexWrap: 'wrap',
+    }
+    const liStyles={
+        marginRight: '10px',
+        listStyleType: 'none',
+        padding: '10px',
+        cursor: 'pointer',
+    }
     return (
-        <ul>
-            <li onClick={() => switchPage(1)}>Answers</li>
-            <li onClick={() => switchPage(2)}>Comments</li>     
+        <ul className='profile-navigator' style={ulStyles}>
+            <li onClick={() => switchPage(1)} style={{...liStyles, background:  page===1 && '#eee'}}>Answers</li>
+            <li onClick={() => switchPage(2)} style={{...liStyles, background:  page===2 && '#eee'}}>Comments</li>
         </ul>
     )
 }

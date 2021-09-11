@@ -2,14 +2,14 @@ const express=require('express')
 const router= express.Router()
 
 const Answer = require('../models/Answer')
-const Article = require('../models/Article')
 const QnA = require('../models/QnA')
 const User = require('../models/User')
+const Consultant = require('../models/Consultant')
 const authUser = require('../utils/authUser')
 
 router.get('/', async (req, res) => {
     try {
-        const qnaS = await QnA.find()
+        const qnaS = await QnA.find().sort({postedAt: 'desc'})
         res.status(200).json({qnaS})
     } catch (err) {
         console.log(err)
@@ -91,8 +91,12 @@ router.delete('/q/:id', authUser, async (req, res) => {
 
 router.get('/a/all/:id', async (req, res) => {
     try {
-        const user = await User.findById(req.params.id)
-        const answers = await Answer.find({email: user.email})
+        let user = await User.findById(req.params.id)
+        if (!user) {
+            user = await Consultant.findById(req.params.id)
+        }
+
+        const answers = await Answer.find({email: user.email}).sort({createdAt: 'desc'})
         res.status(200).json({answers})
     } catch (err) {
         console.log(err.message)

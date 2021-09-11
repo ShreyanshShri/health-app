@@ -80,7 +80,7 @@ router.post('/login', async(req, res) => {
 router.post('/change-pfp', upload.single("avatar"), authUser, async(req, res) => {
     try {
         const user = await User.findOne({ authKey: req.body.password })
-        console.log(req.file)
+
         user.profile_pic = req.file.filename
         await user.save()
         res.status(200).json({message: "Profile Updated"})

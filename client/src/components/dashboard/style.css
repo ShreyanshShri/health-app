@@ -1,0 +1,38 @@
+.user-avatar-big{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 20000px;
+    margin-top: 10px;
+}
+
+.profile-navigator{
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        flex-wrap: wrap;
+}
+
+.dashboard-navigator li {
+        margin-right: 10px;
+        list-style-type: none;
+        padding: 10px;
+        cursor: pointer;
+}
+
+@media (min-width: 726px) {
+    .dashboard-navigator {
+        flex-direction: column;
+        border-right: 1px solid rgba(119, 119, 119, 0.2);
+    }    
+    .user-avatar-big{
+        width: 120px;
+        height: 120px;
+    }
+}
+
+.a-box{
+    padding: 10px;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 10px;
+}

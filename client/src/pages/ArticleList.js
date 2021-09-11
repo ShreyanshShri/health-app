@@ -5,7 +5,7 @@ import swal from 'sweetalert'
 import './style.css'
 import ArticleCard from '../components/ArticleCard'
 import MetaTags from '../components/MetaTags'
-// import Loader from '../common/Loader'
+import Loader from '../layout/Loader'
 
 const ArticleList = () => {
     
@@ -38,15 +38,15 @@ const ArticleList = () => {
     return (
         <div className='container'>
             <MetaTags 
-                title='xyz Coaching- Blog'
-                description='a coaching institute based on this city for preparation of this that'
-                keywords='study, motivation, students, life, life lessons, xyz city'
+                title='Health++ - Blog'
+                description='A complete solution to all your health problems'
+                keywords='motivation, health, fitness, yoga, bmi'
                 url='https://yoururl.com'
                 imageurl='source.unsplash.com/random'
-                type='register page'
+                type='blog page'
             />
             <h1 className='container'>Articles</h1>
-            {!loading && articles.map((article, index) => {
+            {loading ? <Loader /> : articles.map((article, index) => {
                 return <ArticleCard 
                             key={index}
                             wallpaper={article.wallpaper} 

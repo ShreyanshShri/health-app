@@ -27,6 +27,7 @@ const userRoute = require('./routes/user')
 const consultantRoute = require('./routes/consultant')
 const consultanceRoute = require('./routes/consultance')
 const qnaRoute = require('./routes/qna')
+const statsRoute = require('./routes/stats')
 
 app.use(express.urlencoded({ extended:false }))
 app.use(express.json())
@@ -42,8 +43,13 @@ let chatId = null;
         console.log("connected")
 
         socket.on('join-user', async({sender_authKey, reciever_id}) => {
-            const sender = await User.findOne({ authKey: sender_authKey })
-            const reciever = await Consultant.findById(reciever_id)
+            console.log(sender_authKey)
+            let sender = await User.findOne({ authKey: sender_authKey })
+            let reciever = await Consultant.findById(reciever_id)
+            if (!sender) {
+                sender = await Consultant.findOne({ authKey: sender_authKey })
+                reciever = await User.findById(reciever_id)
+            }
             
             if (!sender) console.log("sender: " + sender)
             if (!reciever) return console.log("reciever :" + reciever)
@@ -71,7 +77,9 @@ let chatId = null;
                 try {
                     const chat = new Chats({
                         client: sender.email,
-                        consultant: reciever.email
+                        consultant: reciever.email,
+                        client_id: sender._id,
+                        consultant_id: reciever._id
                     })
                     await chat.save()
 
@@ -139,3 +147,4 @@ app.use('/user', userRoute)
 app.use("/consultant", consultantRoute)
 app.use("/consultance", consultanceRoute)
 app.use('/qna', qnaRoute)
+app.use('/stats', statsRoute)
