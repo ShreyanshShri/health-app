@@ -15,11 +15,11 @@ const Stats = () => {
     const getData = async () => {
         
         try {
-            if(localStorage.getItem('isConsultant') == 'true'){
+            if(localStorage.getItem('isConsultant') === 'true'){
                 setShakeCount(false)
                 return
             }
-            const res = await axios.post('/stats/get', {
+            const res = await axios.post('https://healthplusplus.herokuapp.com/stats/get', {
                 password: localStorage.getItem('authKey')
             })
 
@@ -45,6 +45,7 @@ const Stats = () => {
                 <div>
                     <h4 className='mt-3'>A joke to make your day:</h4>
                     <Jokes />
+                    {/* eslint-disable-next-line */}
                     <div className='footstep-stats' className='a-box mt-4'>
                         {shakeCount !== false && 
                         <React.Fragment>

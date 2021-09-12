@@ -29,7 +29,7 @@ const SignUp = () => {
     }
 
     const submitForm = async () => {
-        if (checkBox2) {
+        if (!checkBox2) {
             return swal({
                 icon: 'error',
                 title: 'Wishlist Karlson on steam now Gamerrzzz!',
@@ -40,9 +40,9 @@ const SignUp = () => {
             setLoading(true)
             let res;
             if(checkBox) {
-                res = await axios.post('/consultant/register', formData)
+                res = await axios.post('https://healthplusplus.herokuapp.com/consultant/register', formData)
             } else {
-                res = await axios.post('/user/register', formData)
+                res = await axios.post('https://healthplusplus.herokuapp.com/user/register', formData)
             }
             setLoading(false)
             setFormData({

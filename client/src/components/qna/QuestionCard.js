@@ -9,7 +9,7 @@ const QuestionCard = ({id, username, profile, content, postedAt}) => {
             <h4>{content}</h4>
             <div className='q-user-info'>
             <div style={{display: 'flex', alignItems: 'center'}}>
-                <img className='user-avatar' src={`/uploads/${profile}`} /><p style={{marginLeft: '10px'}}>{username}</p>
+                <img className='user-avatar' src={`https://healthplusplus.herokuapp.com/uploads/${profile}`} alt='img' /><p style={{marginLeft: '10px'}}>{username}</p>
                 </div>
                 <span className='text-muted'>{new Date(postedAt).toLocaleDateString()}</span>
             </div>

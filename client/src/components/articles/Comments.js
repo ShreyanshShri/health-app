@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import swal from 'sweetalert'
-import {Button} from 'react-bootstrap'
 import axios from 'axios'
 
 const Comments = ({comments, id, setComments}) => {
@@ -13,7 +12,7 @@ const Comments = ({comments, id, setComments}) => {
 
             if(commentVal === '') return
             setLoading(true)
-            const res = await axios.post(`/articles/comment/${id}`, {
+            const res = await axios.post(`https://healthplusplus.herokuapp.com/articles/comment/${id}`, {
                 comment: commentVal,
                 password: localStorage.getItem("authKey")
             })

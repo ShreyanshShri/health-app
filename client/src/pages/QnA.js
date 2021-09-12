@@ -15,7 +15,7 @@ const QnA = () => {
 
     const fetchData = async () => {
         try {
-            const res = await axios.get('/qna/')
+            const res = await axios.get('https://healthplusplus.herokuapp.com/qna/')
             setQuestions(res.data.qnaS)
         } catch (err) {
             swal({
@@ -30,7 +30,7 @@ const QnA = () => {
     const postData = async () => {
         try {
             setLoading(true)
-            const res = await axios.post('/qna/q', {
+            const res = await axios.post('https://healthplusplus.herokuapp.com/qna/q', {
                 password: localStorage.getItem('authKey'),
                 content: commentVal
             })

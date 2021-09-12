@@ -32,9 +32,9 @@ const Login = () => {
             setLoading(true)
             let res;
             if(checkBox === true) {
-                res = await axios.post('/consultant/login', formData)
+                res = await axios.post('https://healthplusplus.herokuapp.com/consultant/login', formData)
             } else {
-                res = await axios.post('/user/login', formData)
+                res = await axios.post('https://healthplusplus.herokuapp.com/user/login', formData)
             }
             setLoading(false)
             setFormData({

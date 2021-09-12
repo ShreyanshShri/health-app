@@ -20,10 +20,10 @@ const Profile = () => {
             let res;
             if(localStorage.getItem('isConsultant') === 'true') {
                 console.log('herre')
-                res = await axios.get(`/consultant/get/${localStorage.getItem('userID')}`)
+                res = await axios.get(`https://healthplusplus.herokuapp.com/consultant/get/${localStorage.getItem('userID')}`)
                 setUser(res.data.consultant)
             } else {
-                res = await axios.get(`/user/get/${localStorage.getItem('userID')}`)
+                res = await axios.get(`https://healthplusplus.herokuapp.com/user/get/${localStorage.getItem('userID')}`)
                 setUser(res.data.user)
             }
             console.log(res.data.user)
@@ -49,7 +49,7 @@ const Profile = () => {
             <div className='user-stats container'>
                 {user ? <React.Fragment>
                 <div className='d-flex align-items-center justify-content-center' style={{flexDirection:"column"}}>
-                <img src={`/uploads/${user.profile_pic}`} alt="pfp" className='mb-2 user-avatar-big' />
+                <img src={`https://healthplusplus.herokuapp.com/uploads/${user.profile_pic}`} alt="pfp" className='mb-2 user-avatar-big' />
                 <h3>{user.username}</h3>
                 <p>{user.about}</p>
                 <Link to='/user/edit-profile'><button className='btn btn-outline-primary mb-4'>Update profile</button></Link>

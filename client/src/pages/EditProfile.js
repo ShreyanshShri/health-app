@@ -5,7 +5,6 @@ import axios from 'axios'
 const EditProfile = () => {
 
     const [inputVal, setInputVal] = useState(null)
-    const [user, setUser] = useState(null)
     const [file, setFile] = useState(null)
     const [loading, setLoading] = useState(false)
 
@@ -16,12 +15,10 @@ const EditProfile = () => {
             let res;
             setLoading(true)
             if (localStorage.getItem('isConsultant') === 'true') {
-                res = await axios.get(`/consultant/get/${localStorage.getItem("userID")}`)
-                setUser(res.data.consultant)
+                res = await axios.get(`https://healthplusplus.herokuapp.com/consultant/get/${localStorage.getItem("userID")}`)
                 setInputVal(res.data.user.about)
             } else {
-                res = await axios.get(`/user/get/${localStorage.getItem("userID")}`)
-                setUser(res.data.user)
+                res = await axios.get(`https://healthplusplus.herokuapp.com/user/get/${localStorage.getItem("userID")}`)
                 setInputVal(res.data.user.about)
             }
             setLoading(false)
@@ -42,12 +39,12 @@ const EditProfile = () => {
             let res;
             setLoading(true)
             if (localStorage.getItem('isConsultant') === 'true') {
-                res = await axios.post(`/consultant/update-desc`, {
+                res = await axios.post(`https://healthplusplus.herokuapp.com/consultant/update-desc`, {
                     password: localStorage.getItem('authKey'),
                     desc: inputVal
                 })
             } else {
-                res = await axios.post(`/user/update-desc`, {
+                res = await axios.post(`https://healthplusplus.herokuapp.com/user/update-desc`, {
                     password: localStorage.getItem('authKey'),
                     desc: inputVal
                 })
@@ -80,13 +77,13 @@ const EditProfile = () => {
             formdata.append('password', localStorage.getItem('authKey'))
             let res;
             if(localStorage.getItem('isConsultant') === 'true') {
-                res = await axios.post('/consultant/change-pfp', formdata, {
+                res = await axios.post('https://healthplusplus.herokuapp.com/consultant/change-pfp', formdata, {
                     headers: {
                         'content-type': 'multipart/form-data'
                       }
                 })
             } else {
-                res = await axios.post('/user/change-pfp', formdata, {
+                res = await axios.post('https://healthplusplus.herokuapp.com/user/change-pfp', formdata, {
                     headers: {
                         'content-type': 'multipart/form-data'
                       }

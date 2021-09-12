@@ -13,7 +13,7 @@ const Comments = () => {
     const fetchData = async () => {
         try {
             
-            const res = await axios.get(`/articles/comments/get/${localStorage.getItem('userID')}`)
+            const res = await axios.get(`https://healthplusplus.herokuapp.com/articles/comments/get/${localStorage.getItem('userID')}`)
             setComments(res.data.comments)
             console.log(res.data.comments)
         } catch (err) {
@@ -30,7 +30,7 @@ const Comments = () => {
     const onEdit = async(id, content) => {
         try {
             setLoading(true)
-            const res = await axios.put(`/articles/comments/${id}`, {
+            const res = await axios.put(`https://healthplusplus.herokuapp.com/articles/comments/${id}`, {
                 comment: content,
                 password: localStorage.getItem("authKey")
             })
@@ -57,7 +57,7 @@ const Comments = () => {
     const onDelete = async (id) => {
         try {
             setLoading(true)
-            const res = await axios.delete(`/articles/comment/${id}`, {
+            const res = await axios.delete(`https://healthplusplus.herokuapp.com/articles/comment/${id}`, {
                 data: {
                     password: localStorage.getItem("authKey")
                 }

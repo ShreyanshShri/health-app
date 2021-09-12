@@ -14,7 +14,7 @@ const ArticleList = () => {
 
     const fetchData = async () => {
         try {
-            const res = await axios.get(`/articles?page=${1}`)
+            const res = await axios.get(`https://healthplusplus.herokuapp.com/articles?page=${1}`)
             const data = res.data.articles
             console.log(res)
             setArticles(data)

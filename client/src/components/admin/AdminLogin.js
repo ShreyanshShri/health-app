@@ -20,7 +20,7 @@ const AdminLogin = ({redirect, setRedirect}) => {
         event.preventDefault()
         try {
             setLoading(true)
-            const res = await axios.post('/auth', {password})
+            const res = await axios.post('https://healthplusplus.herokuapp.com/auth', {password})
             sessionStorage.setItem('authToken', res.data.authToken)
             setLoading(false)
             setRedirect(true)

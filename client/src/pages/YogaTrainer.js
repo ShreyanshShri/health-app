@@ -15,7 +15,6 @@ import pos10 from '../assets/yoga/pos10.jpg'
 const YogaTrainer = () => {
 
     const [index, setIndex] = useState(0)
-    const [completed, setCompleted] = useState('false')
 
     const imgs = [
         {
@@ -64,8 +63,6 @@ const YogaTrainer = () => {
         setInterval(function() {
             if(index < imgs.length - 1){
                 setIndex(index+1)
-            } else {
-                setCompleted(true)
             }
         }, 1000 * 60)
         //eslint-disable-next-line

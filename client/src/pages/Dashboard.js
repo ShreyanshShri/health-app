@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 
 import Stats from '../components/dashboard/Stats'
 import Profile from '../components/dashboard/Profile'
@@ -9,7 +9,6 @@ import './style.css'
 
 const Dashboard = () => {
 
-    const [user, setUser] = useState(null)
     const [page, setPage] = useState(1)
 
     const switchPage = (page) => {

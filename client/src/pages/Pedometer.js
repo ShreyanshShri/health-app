@@ -12,7 +12,7 @@ const Pedometer = () => {
     const getData = async () => {
         
         try {
-            const res = await axios.post('/stats/get', {
+            const res = await axios.post('https://healthplusplus.herokuapp.com/stats/get', {
                 password: localStorage.getItem('authKey')
             })
             setShakeCount(res.data.count)
@@ -30,7 +30,7 @@ const Pedometer = () => {
     const postData = async (count) => {
         
         try {
-            await axios.post('/stats/add', {
+            await axios.post('https://healthplusplus.herokuapp.com/stats/add', {
                 password: localStorage.getItem('authKey'),
                 count: count
             })

@@ -34,7 +34,7 @@ const LandingPage = () => {
             </div>
             <div className='features'>
                 <div className='feature container'>
-                    <img src={personalisation} className='feature-icon'></img>
+                    <img src={personalisation} className='feature-icon' alt='img'></img>
                     <div className='content-wrapper'>
                     <h2>Get personalized data</h2>
                     <Link to='/signup'>
@@ -49,10 +49,10 @@ const LandingPage = () => {
                     <button className='btn btn-outline-primary'>Visit QnA</button>
                     </Link>
                     </div>
-                    <img src={qna} className='feature-icon'></img>
+                    <img src={qna} className='feature-icon'  alt='img'></img>
                 </div>
                 <div className='feature container'>
-                    <img src={consultancy} className='feature-icon'></img>
+                    <img src={consultancy} className='feature-icon' alt='img'></img>
                     <div className='content-wrapper'>
                     <h2>Get 1:1 consultancy from our experts</h2>
                     <Link to='/signup'>
@@ -67,10 +67,10 @@ const LandingPage = () => {
                     <button className='btn btn-outline-primary'>See Articles</button>
                     </Link>
                     </div>
-                    <img src={blog} className='feature-icon'></img>
+                    <img src={blog} className='feature-icon' alt='img'></img>
                 </div>
                 <div className='feature container'>
-                    <img src={caclulator} className='feature-icon'></img>
+                    <img src={caclulator} className='feature-icon' alt='img'></img>
                     <div className='content-wrapper'>
                     <h2>Yoga trainer, calculators and many useful tools</h2>
                     <Link to='/tools'>

@@ -1,6 +1,5 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, useEffect } from 'react'
 import io from 'socket.io-client'
-import {Link} from 'react-router-dom'
 import ScrollToBottom from 'react-scroll-to-bottom'
 
 let socket;
@@ -12,7 +11,7 @@ const Chat = ({match}) => {
     const [msg, setMessage] = useState('')
 
 
-    socket = io('http://localhost:5000',  {
+    socket = io('https://healthplusplus.herokuapp.com/',  {
         transports: ['websocket'], 
         upgrade: false
       })

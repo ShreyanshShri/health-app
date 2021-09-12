@@ -11,7 +11,7 @@ const Inbox = () => {
 
     const fetchData = async () => {
         try {
-            const res = await axios.post('/consultance', {
+            const res = await axios.post('https://healthplusplus.herokuapp.com/consultance', {
                 password: localStorage.getItem('authKey')
             })
             setChats(res.data.chats)

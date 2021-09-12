@@ -13,7 +13,7 @@ const EditArticle = ({match}) => {
 
     const fetchData = async() => {
         try {
-            const res = await axios.get(`/articles/${match.params.id}`)
+            const res = await axios.get(`https://healthplusplus.herokuapp.com/articles/${match.params.id}`)
             const data = res.data
             setArticle(data)
             setLoading(false)
@@ -30,7 +30,7 @@ const EditArticle = ({match}) => {
 
     const editArticle = async (formData) => {
         try {
-            const res = await axios.put(`/articles/${match.params.id}`, {
+            const res = await axios.put(`https://healthplusplus.herokuapp.com/articles/${match.params.id}`, {
                     password: sessionStorage.getItem('authToken'),
                     article: formData
             })

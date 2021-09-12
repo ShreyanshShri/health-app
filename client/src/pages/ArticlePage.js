@@ -14,7 +14,7 @@ const ArticlePage = ({ match }) => {
 
     const fetchData = async() => {
         try {
-            const res = await axios.get(`/articles/${match.params.id}`)
+            const res = await axios.get(`https://healthplusplus.herokuapp.com/articles/${match.params.id}`)
             const data = res.data
             console.log(data)
             setArticle(data)

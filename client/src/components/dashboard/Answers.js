@@ -13,7 +13,7 @@ const Answers = () => {
     const fetchData = async () => {
         try {
             
-            const res = await axios.get(`/qna/a/all/${localStorage.getItem('userID')}`)
+            const res = await axios.get(`https://healthplusplus.herokuapp.com/qna/a/all/${localStorage.getItem('userID')}`)
             setAnswers(res.data.answers)
 
         } catch (err) {
@@ -30,7 +30,7 @@ const Answers = () => {
     const onEdit = async(id, content) => {
         try {
             setLoading(true)
-            const res = await axios.put(`/qna/a/${id}`, {
+            const res = await axios.put(`https://healthplusplus.herokuapp.com/qna/a/${id}`, {
                 answer: content,
                 password: localStorage.getItem("authKey")
             })
@@ -57,7 +57,7 @@ const Answers = () => {
     const onDelete = async (id) => {
         try {
             setLoading(true)
-            const res = await axios.delete(`/qna/a/${id}`, {
+            const res = await axios.delete(`https://healthplusplus.herokuapp.com/qna/a/${id}`, {
                 data: {
                     password: localStorage.getItem("authKey")
                 }

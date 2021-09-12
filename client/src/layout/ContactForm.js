@@ -25,7 +25,7 @@ const ContactForm = () => {
         const submitForm = async () => {
             try {
                 setLoading(true)
-                await axios.put('/contact', formData)
+                await axios.put('https://healthplusplus.herokuapp.com/contact', formData)
                 setLoading(false)
                 setFormData({
                     name: '',

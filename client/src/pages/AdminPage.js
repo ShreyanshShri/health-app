@@ -16,7 +16,7 @@ const AdminPage = () => {
 
     const verifyAuthToken = async () => {
         try {
-            await axios.post('/auth/verify', {
+            await axios.post('https://healthplusplus.herokuapp.com/auth/verify', {
                 authToken: sessionStorage.getItem('authToken')
             })
             setVerified(true)

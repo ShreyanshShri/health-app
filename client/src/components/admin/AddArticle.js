@@ -20,7 +20,7 @@ const AddArticle = () => {
         try {
             setState('Posting Article... Please Wait')
             setLoading(true)
-            const res = await axios.post('/articles', formData)
+            const res = await axios.post('https://healthplusplus.herokuapp.com/articles', formData)
             setArticleId(res.data.id)
             setState(res.data.message)
             setLoading(false)

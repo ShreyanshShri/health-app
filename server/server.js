@@ -3,6 +3,7 @@ const socketio = require('socket.io')
 const express = require('express')
 const app = express()
 const moment = require('moment')
+const cors = require('cors')
 
 const connectToDb = require('./utils/connectToDb')
 connectToDb()
@@ -11,12 +12,11 @@ const User = require('./models/User')
 const Consultant = require('./models/Consultant')
 const Chats = require('./models/Chats')
 
-
 const PORT = process.env.PORT || 5000
 const server = app.listen(PORT, () => console.log(`Server started at port ${PORT}`))
 const io = socketio(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "https://shreyanshshri.netlify.com",
     }
 })
 
@@ -29,13 +29,9 @@ const consultanceRoute = require('./routes/consultance')
 const qnaRoute = require('./routes/qna')
 const statsRoute = require('./routes/stats')
 
+app.use(cors())
 app.use(express.urlencoded({ extended:false }))
 app.use(express.json())
-
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + '/routes/views/index.html')
-})
-
 
 let chatId = null;
 // socketio stuff
@@ -132,12 +128,6 @@ let chatId = null;
 
         })
     })
-
-
-
-
-
-
 
 
 app.use('/uploads', express.static('uploads'))

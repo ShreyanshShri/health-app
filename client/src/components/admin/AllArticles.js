@@ -12,7 +12,7 @@ const AllArticles = () => {
 
     const fetchData = async () => {
         try {
-            const res = await axios.get(`/articles?page=${1}`)
+            const res = await axios.get(`https://healthplusplus.herokuapp.com/articles?page=${1}`)
             const data = res.data.article
             setArticles(data)
             setLoading(false)
@@ -40,7 +40,7 @@ const AllArticles = () => {
             }
         }
         try {
-            const res = await axios.delete(`/articles/${id}`, postData)
+            const res = await axios.delete(`https://healthplusplus.herokuapp.com/articles/${id}`, postData)
             swal({
                 title: "Success!",
                 text: `${res.data.message}`,
@@ -64,7 +64,7 @@ const AllArticles = () => {
     return (
         <div className='container'>
             <Link to='/admin/article/new'><button className='btn btn-outline-secondary container my-2'>Add Article</button></Link>
-            {loading ? "Loading" : articles.map((article, index) => {
+            {loading ? "Loading" : articles && articles.map((article, index) => {
                 return <ArticleCard 
                             key={index}
                             wallpaper={article.wallpaper} 
